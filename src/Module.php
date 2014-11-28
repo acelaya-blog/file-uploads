@@ -3,6 +3,11 @@ namespace Acelaya;
 
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 
+/**
+ * Class Module
+ * @author Alejandro Celaya Alastrué
+ * @link http://www.alejandrocelaya.com
+ */
 class Module implements ConfigProviderInterface
 {
     /**
