@@ -1,0 +1,20 @@
+{
+    "name": "acelaya/file-uploads",
+    "description": "File uploads with Zend Framework 2 and jQuery",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alejandro Celaya",
+            "email": "alejandro@alejandrocelaya.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Acelaya\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.4",
+        "zendframework/zendframework": "2.3.*"
+    }
+}
