@@ -13,9 +13,6 @@ use Zend\View\Model\ViewModel;
  */
 class IndexController extends AbstractActionController
 {
-    const CODE_SUCCESS = 'success';
-    const CODE_ERROR = 'error';
-
     /**
      * @var FilesServiceInterface
      */
@@ -28,15 +25,19 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $model = new ViewModel();
+        $model = new ViewModel([
+            'files' => $this->filesService->getFiles()
+        ]);
         return $model->setTemplate('index');
     }
 
     public function uploadAction()
     {
         $files = $this->params()->fromFiles('files');
+        $code = $this->filesService->persistFiles($files);
 
-        $model = new ViewModel();
-        return $model->setTemplate('index');
+        return new JsonModel([
+            'code' => $code
+        ]);
     }
 }
