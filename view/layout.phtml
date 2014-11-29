@@ -1,1 +1,34 @@
-Hi!!
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>File uploads with Zend Framework 2 and jQuery</title>
+        <?php
+        /** @var \Zend\View\Helper\HeadMeta $meta */
+        $meta = $this->headMeta();
+        echo $meta->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                  ->setCharset('utf-8')
+                  ->appendHttpEquiv('X-UA-Compatible', 'IE=edge');
+
+        /** @var \Zend\View\Helper\HeadLink $style */
+        $style = $this->headLink();
+        echo $style->appendStylesheet($this->basePath() . '/css/bootstrap.min.css')
+                   ->appendStylesheet($this->basePath() . '/css/main.css');
+        ?>
+    </head>
+    <body>
+        <header>
+            <?php echo $this->partial('header') ?>
+        </header>
+        <div class="container">
+            <?php echo $this->content ?>
+        </div>
+
+        <?php
+        /** @var \Zend\View\Helper\InlineScript $script */
+        $script = $this->inlineScript();
+        echo $script->appendFile($this->basePath() . '/js/jquery.min.js')
+                    ->appendFile($this->basePath() . '/js/bootstrap.min.js')
+                    ->appendFile($this->basePath() . '/js/main.js')
+        ?>
+    </body>
+</html>
