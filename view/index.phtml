@@ -1,0 +1,14 @@
+<fieldset>
+    <legend>Files list</legend>
+    <div id="files" data-content-url="<?php echo $this->url('home/list-files') ?>">
+        <?php echo $this->partial('list'); ?>
+    </div>
+</fieldset>
+<fieldset>
+    <legend>Upload new files</legend>
+    <form name="uploadFiles" id="uploadFiles" method="post"
+          action="<?php echo $this->url('home/upload-files') ?>" enctype="multipart/form-data">
+        <input type="file" name="files[]" multiple>
+        <button type="submit" class="btn btn-primary">Upload files</button>
+    </form>
+</fieldset>
