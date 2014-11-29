@@ -29,7 +29,9 @@ return [
                         'type' => 'Literal',
                         'options' => [
                             'route' => 'upload-files',
-                            'defaults' => []
+                            'defaults' => [
+                                'action' => 'upload'
+                            ]
                         ]
                     ]
                 ]
@@ -53,6 +55,9 @@ return [
         'template_path_stack' => [
             __DIR__ . '/../view',
         ],
+        'strategies' => [
+            'ViewJsonStrategy'
+        ]
     ],
 
     'files' => [

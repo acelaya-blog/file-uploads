@@ -4,6 +4,7 @@ namespace Acelaya;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
 /**
@@ -13,6 +14,9 @@ use Zend\View\Model\ViewModel;
  */
 class IndexController extends AbstractActionController implements FactoryInterface
 {
+    const CODE_SUCCESS = 'success';
+    const CODE_ERROR = 'error';
+
     public function __construct()
     {
 
@@ -22,6 +26,13 @@ class IndexController extends AbstractActionController implements FactoryInterfa
     {
         $model = new ViewModel();
         return $model->setTemplate('index');
+    }
+
+    public function uploadAction()
+    {
+        return new JsonModel([
+            'code' => self::CODE_SUCCESS
+        ]);
     }
 
     /**

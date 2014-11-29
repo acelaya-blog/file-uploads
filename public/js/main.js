@@ -15,39 +15,42 @@ var acelaya = {
 
         $form.submit(function (e) {
             e.preventDefault();
-            var $form = $(this),
-                action = $form.attr('action'),
-                method = $form.attr('method');
+            acelaya.uploadFiles($(this));
+        });
+    },
 
-            $.ajax({
-                url: action,
-                type: method,
-                data: new FormData($form[0]),
-                cache: false,
-                contentType: false,
-                processData: false,
-                xhr: function () {
-                    // This will make the ajax request to use a custom XHR object which will handle the progress
-                    var myXhr = $.ajaxSettings.xhr();
-                    if (myXhr.upload) {
-                        var progressBar = acelaya.createProgressBar($form);
+    uploadFiles: function ($form) {
+        var action = $form.attr('action'),
+            method = $form.attr('method');
 
-                        // Add progress event handler
-                        myXhr.upload.addEventListener('progress', function(e) {
-                            acelaya.handleUploadProgress(e, progressBar);
-                        }, false);
-                        myXhr.upload.addEventListener('load', function() {
-                            // Firefox does not trigger the 'progress' event when upload is 100%.
-                            // This forces progress to end when upload is successful
-                            progressBar.find('.progress-bar').css({width : '100%'});
-                        }, false);
-                    }
+        $.ajax({
+            url: action,
+            type: method,
+            data: new FormData($form[0]),
+            cache: false,
+            contentType: false,
+            processData: false,
+            xhr: function () {
+                // This will make the ajax request to use a custom XHR object which will handle the progress
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    var progressBar = acelaya.createProgressBar($form);
 
-                    return myXhr;
+                    // Add progress event handler
+                    myXhr.upload.addEventListener('progress', function(e) {
+                        acelaya.handleUploadProgress(e, progressBar);
+                    }, false);
+                    myXhr.upload.addEventListener('load', function() {
+                        // Firefox does not trigger the 'progress' event when upload is 100%.
+                        // This forces progress to end when upload is successful
+                        progressBar.find('.progress-bar').css({width : '100%'});
+                    }, false);
                 }
-            }).done(function () {
 
-            });
+                return myXhr;
+            }
+        }).done(function (resp) {
+
         });
     },
 
@@ -62,7 +65,6 @@ var acelaya = {
         }
 
         var percent = e.total > 0 ? e.loaded * 100 / e.total : 100;
-        console.log(progressBar);
         progressBar.find('.progress-bar').css({width : percent + '%'});
         progressBar.find('.progress-bar').text(parseInt(percent) + '%');
     },
