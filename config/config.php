@@ -70,6 +70,7 @@ return [
     ],
 
     'files' => [
-        'base_path' => 'files'
+        'base_path' => 'files',
+        'max_size' => '1536MB'
     ]
 ];

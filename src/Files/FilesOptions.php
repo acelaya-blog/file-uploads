@@ -12,7 +12,14 @@ use Zend\Stdlib\AbstractOptions;
  */
 class FilesOptions extends AbstractOptions
 {
+    /**
+     * @var string
+     */
     protected $basePath = '';
+    /**
+     * @var string
+     */
+    protected $maxSize = '1536MB';
 
     public function __construct(array $options = [])
     {
@@ -39,6 +46,24 @@ class FilesOptions extends AbstractOptions
             throw new \InvalidArgumentException('Provided base path is not a valid directory');
         }
         $this->basePath = realpath($basePath);
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMaxSize()
+    {
+        return $this->maxSize;
+    }
+
+    /**
+     * @param string $maxSize
+     * @return $this
+     */
+    public function setMaxSize($maxSize)
+    {
+        $this->maxSize = $maxSize;
         return $this;
     }
 }

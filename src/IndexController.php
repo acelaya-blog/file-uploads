@@ -3,6 +3,7 @@ namespace Acelaya;
 
 use Acelaya\Files\FilesServiceInterface;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Validator\File\NotExists;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
