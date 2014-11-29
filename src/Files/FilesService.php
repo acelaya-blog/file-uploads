@@ -27,6 +27,7 @@ class FilesService implements FilesServiceInterface
         $files = [];
         /** @var \SplFileInfo $file */
         foreach ($iterator as $file) {
+            $file = $file->getFileInfo();
             if ($file->isDir() || $this->isFileHidden($file)) {
                 continue;
             }
