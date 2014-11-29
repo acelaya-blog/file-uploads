@@ -1,0 +1,26 @@
+<?php
+if (! isset($this->files) || count($this->files) === 0): ?>
+<div class="alert alert-warning text-center">
+    Files dir is empty
+</div><?php
+else: ?>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Extension</th>
+            <th>Size</th>
+        </tr>
+    </thead>
+    <tbody><?php
+        /** @var SplFileInfo $file */
+        foreach ($this->files as $file): ?>
+        <tr>
+            <td><?php echo $file->getBasename() ?></td>
+            <td><?php echo $file->getExtension() ?></td>
+            <td><?php echo $file->getSize() ?></td>
+        </tr><?php
+        endforeach; ?>
+    </tbody>
+</table><?php
+endif;

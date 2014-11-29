@@ -50,7 +50,16 @@ var acelaya = {
                 return myXhr;
             }
         }).done(function (resp) {
-
+            if (resp.code === 'success') {
+                acelaya.refreshFilesList();
+            } else {
+                $form.after(
+                    '<div class="alert alert-danger alert-dismissable" style="margin-top: 20px">' +
+                        '<button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>' +
+                        '<div>An error occurred with uploaded files</div>' +
+                    '</div>'
+                )
+            }
         });
     },
 
@@ -85,6 +94,12 @@ var acelaya = {
         $fieldset.append(progressBar);
 
         return $fieldset.find('.progress');
+    },
+
+    refreshFilesList: function () {
+        var $files = $('#files'),
+            url = $files.data('contentUrl');
+        $files.load(url);
     }
 };
 

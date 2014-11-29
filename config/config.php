@@ -42,6 +42,15 @@ return [
                                 'action' => 'upload'
                             ]
                         ]
+                    ],
+                    'list-files' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'list-files',
+                            'defaults' => [
+                                'action' => 'list'
+                            ]
+                        ]
                     ]
                 ]
             ]

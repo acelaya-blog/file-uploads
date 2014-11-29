@@ -41,4 +41,13 @@ class IndexController extends AbstractActionController
             'code' => $code
         ]);
     }
+
+    public function listAction()
+    {
+        $model = new ViewModel([
+            'files' => $this->filesService->getFiles()
+        ]);
+        $model->setTerminal(true);
+        return $model->setTemplate('list');
+    }
 }
