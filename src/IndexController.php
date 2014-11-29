@@ -3,7 +3,7 @@ namespace Acelaya;
 
 use Acelaya\Files\FilesServiceInterface;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\Validator\File\NotExists;
+use Zend\Http;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
@@ -44,10 +44,16 @@ class IndexController extends AbstractActionController
 
     public function listAction()
     {
-        $model = new ViewModel([
-            'files' => $this->filesService->getFiles()
-        ]);
-        $model->setTerminal(true);
-        return $model->setTemplate('list');
+        /** @var Http\Request $request */
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest()) {
+            $model = new ViewModel([
+                'files' => $this->filesService->getFiles()
+            ]);
+            $model->setTerminal(true);
+            return $model->setTemplate('list');
+        } else {
+            return $this->redirect()->toRoute('home');
+        }
     }
 }
