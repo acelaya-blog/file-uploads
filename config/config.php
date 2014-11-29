@@ -1,8 +1,14 @@
 <?php
 return [
     'controllers' => [
-        'invokables' => [
+        'factories' => [
             'Acelaya\Index' => 'Acelaya\IndexController'
+        ]
+    ],
+
+    'service_mmanager' => [
+        'factories' => [
+            'Acelaya\FilesOptions' => 'Acelaya\FilesOptions'
         ]
     ],
 
@@ -16,14 +22,18 @@ return [
                         'controller' => 'Acelaya\Index',
                         'action' => 'index'
                     ]
+                ],
+                'may_terminate' => true,
+                'child_routes' => [
+                    'upload-files' => [
+                        'type' => 'Literal',
+                        'options' => [
+                            'route' => 'upload-files',
+                            'defaults' => []
+                        ]
+                    ]
                 ]
             ]
-        ]
-    ],
-
-    'service_mmanager' => [
-        'factories' => [
-            'Acelaya\FilesOptions' => 'Acelaya\FilesOptions'
         ]
     ],
 

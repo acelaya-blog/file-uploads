@@ -1,1 +1,22 @@
-<?= __FILE__ ?>
+<fieldset>
+    <legend>Files list</legend>
+    <?php
+    if (! isset($this->files) || count($this->files) === 0): ?>
+        <div class="alert alert-warning text-center">
+            Files dir is empty
+        </div><?php
+    else: ?>
+        <table class="table">
+
+        </table><?php
+    endif;
+    ?>
+</fieldset>
+<fieldset>
+    <legend>Upload new files</legend>
+    <form name="uploadFiles" id="uploadFiles" method="post"
+          action="<?php echo $this->url('home/upload-files') ?>" enctype="multipart/form-data">
+        <input type="file" name="files[]" multiple>
+        <button type="submit" class="btn btn-primary">Upload files</button>
+    </form>
+</fieldset>

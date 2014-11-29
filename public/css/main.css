@@ -5,3 +5,11 @@
 body {
     padding-top: 70px;
 }
+
+fieldset .progress {
+    margin-top: 20px;
+}
+
+form [type=submit] {
+    margin-top: 20px;
+}
