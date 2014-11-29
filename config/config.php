@@ -2,13 +2,22 @@
 return [
     'controllers' => [
         'factories' => [
-            'Acelaya\Index' => 'Acelaya\IndexController'
+            'Acelaya\Index' => function ($sm) {
+                return new Acelaya\IndexController($sm->getServiceLocator()->get('Acelaya\FilesService'));
+            }
         ]
     ],
 
-    'service_mmanager' => [
+    'service_manager' => [
         'factories' => [
-            'Acelaya\FilesOptions' => 'Acelaya\FilesOptions'
+            'Acelaya\FilesOptions' => function ($sm) {
+                $config = $sm->get('Config');
+                return new Acelaya\Files\FilesOptions(isset($config['files']) ? $config['files'] : []);
+            },
+            'Acelaya\FilesService' => function ($sm) {
+                $options = $sm->get('Acelaya\FilesOptions');
+                return new Acelaya\Files\FilesService($options);
+            }
         ]
     ],
 

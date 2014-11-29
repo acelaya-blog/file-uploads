@@ -1,9 +1,8 @@
 <?php
 namespace Acelaya;
 
+use Acelaya\Files\FilesServiceInterface;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
@@ -12,14 +11,19 @@ use Zend\View\Model\ViewModel;
  * @author ALejandro Celaya Alastrué
  * @link http://www.alejandrocelaya.com
  */
-class IndexController extends AbstractActionController implements FactoryInterface
+class IndexController extends AbstractActionController
 {
     const CODE_SUCCESS = 'success';
     const CODE_ERROR = 'error';
 
-    public function __construct()
-    {
+    /**
+     * @var FilesServiceInterface
+     */
+    protected $filesService;
 
+    public function __construct(FilesServiceInterface $filesService)
+    {
+        $this->filesService = $filesService;
     }
 
     public function indexAction()
@@ -30,19 +34,9 @@ class IndexController extends AbstractActionController implements FactoryInterfa
 
     public function uploadAction()
     {
-        return new JsonModel([
-            'code' => self::CODE_SUCCESS
-        ]);
-    }
+        $files = $this->params()->fromFiles('files');
 
-    /**
-     * Create service
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        return new self();
+        $model = new ViewModel();
+        return $model->setTemplate('index');
     }
 }

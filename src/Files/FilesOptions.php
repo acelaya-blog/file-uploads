@@ -1,5 +1,5 @@
 <?php
-namespace Acelaya;
+namespace Acelaya\Files;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -10,7 +10,7 @@ use Zend\Stdlib\AbstractOptions;
  * @author Alejandro Celaya Alastrué
  * @link http://www.wonnova.com
  */
-class FilesOptions extends AbstractOptions implements FactoryInterface
+class FilesOptions extends AbstractOptions
 {
     protected $basePath = '';
 
@@ -40,17 +40,5 @@ class FilesOptions extends AbstractOptions implements FactoryInterface
         }
         $this->basePath = realpath($basePath);
         return $this;
-    }
-
-    /**
-     * Create service
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @return mixed
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
-    {
-        $config = $serviceLocator->get('Config');
-        return new self(isset($config['files']) ? $config['files'] : []);
     }
 }

@@ -17,5 +17,6 @@ $app = Zend\Mvc\Application::init([
     'modules' => [
         'Acelaya'
     ],
+    'module_listener_options' => []
 ]);
 $app->run();
