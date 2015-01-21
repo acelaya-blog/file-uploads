@@ -15,6 +15,10 @@ var acelaya = {
 
         $form.submit(function (e) {
             e.preventDefault();
+
+            // clear .alert block
+            $(".container .alert").remove();
+
             acelaya.uploadFiles($(this));
         });
     },
