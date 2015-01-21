@@ -16,10 +16,7 @@ var acelaya = {
         $form.submit(function (e) {
             e.preventDefault();
 
-            // remove .alert block when it exists
-            if ($(".container .alert").length) {
-                $(".container .alert").remove();
-            }
+            $('.container .alert').remove();
 
             acelaya.uploadFiles($(this));
         });
