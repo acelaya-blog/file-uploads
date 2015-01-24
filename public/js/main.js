@@ -15,6 +15,9 @@ var acelaya = {
 
         $form.submit(function (e) {
             e.preventDefault();
+
+            $('.container .alert').remove();
+
             acelaya.uploadFiles($(this));
         });
     },
