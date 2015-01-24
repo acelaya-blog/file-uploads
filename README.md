@@ -7,4 +7,4 @@ This repository is an example project used in this article http://blog.alejandro
 
 #### Run example
 
-To run this example, just clone this project, install dependencies with `composer install` and start PHP's built-in web server by running `php -S 0.0.0.0:8000 public/index.php`.
+To run this example, just clone this project, install dependencies with `composer install` and start PHP's built-in web server by running `php -S 0.0.0.0:8000 -t public`.
